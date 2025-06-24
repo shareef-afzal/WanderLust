@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate")-%>
+
+<style>
+    h4{
+       margin-top:50px; 
+    }
+</style>
+<% if(!allListings.length) {%>
+    <h4>Sorry no Relevant Listings Found!! </h4>
+    <h2>Explore and Find Awesome Listings and Destination</h2>
+<%}%>
+<% if(allListings.length!=0) {%>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listings of allListings){ %>
+        <a href="/listings/<%=listings._id%>" class="listing-link">
+            <div class="card listing-card" >
+                <img src="<%=listings.image.url%>" class="card-img-top" alt="listing img" style="height:20rem">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <b><%= listings.title %> <br></b>
+                            &#8377; <%= listings.price.toLocaleString("en-IN") %> / night
+                    </p>
+                </div>
+            </div>
+        </a>
+    <%}%>
+</div>
+<%}%>

@@ -1,0 +1,218 @@
+<% layout("/layouts/boilerplate")-%>
+
+<body>
+    <style>
+        .tax-info{
+            display: none;
+        }
+        .filter i{
+            color: #fe424d;
+        }
+        .filter p{
+            font-weight: bolder;
+        }
+        .filter button{
+            padding: 0 !important;
+        }
+
+        .btn,
+        .btn:focus,
+        .btn:active,
+        .btn:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+
+    </style>
+<div class="filters">
+  <div class="slider">
+    <!-- Left Arrow -->
+    <div class="swiper-button-prev swiper-btns"></div>
+
+    <!-- Swiper Container -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+
+        <!-- Rivers -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="rivers">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-water"></i>
+                <p>Rivers</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Cities -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="cities">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-mountain-city"></i>
+                <p>Cities</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Mountains -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="mountains">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-mountain"></i>
+                <p>Mountains</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Castles -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="castles">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-chess-rook"></i>
+                <p>Castles</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Pools -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="pools">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-person-swimming"></i>
+                <p>Pools</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Camping -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="camping">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-campground"></i>
+                <p>Camping</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Farms -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="farms">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-cow"></i>
+                <p>Farms</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Arctic -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="arctic">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-snowflake"></i>
+                <p>Arctic</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Domes -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="domes">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-igloo"></i>
+                <p>Domes</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Boats -->
+        <div class="swiper-slide">
+          <div class="filter">
+            <form action="/listings/search" method="get">
+              <input type="hidden" name="filter" value="boats">
+              <button type="submit" class="btn filter-btn">
+                <i class="fa-solid fa-ship"></i>
+                <p>Boats</p>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Arrow -->
+    <div class="swiper-button-next swiper-btns"></div>
+  </div>
+
+  <div class="tax-toggle">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Display Taxes</label>
+    </div>
+  </div>
+</div>
+
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listings of allListings){ %>
+        <a href="/listings/<%=listings._id%>" class="listing-link">
+            <div class="card listing-card" >
+                <img src="<%=listings.image.url%>" class="card-img-top" alt="listing img" style="height:20rem">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text"> 
+                        <b><%= listings.title %> <br></b>
+                            &#8377; <%= listings.price.toLocaleString("en-IN") %> / night
+                            <i class="tax-info">&nbsp; &nbsp;<b>+<%=(listings.price*0.18).toLocaleString("en-IN")%> GST</b></i>
+                    </p>
+                </div>
+            </div>
+        </a>
+    <%}%>
+</div>
+
+
+</body>
+<script>
+    let taxSwitch=document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click",()=>{
+        let taxInfo=document.getElementsByClassName("tax-info");
+        for(info of taxInfo){
+            if(info.style.display!="inline"){
+                info.style.display="inline";
+            }
+            else{
+                info.style.display="none";
+            }
+            
+        }
+    })
+</script>
