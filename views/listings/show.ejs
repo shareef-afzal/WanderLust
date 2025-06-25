@@ -5,7 +5,7 @@
 
 <% layout("/layouts/boilerplate")-%>
 <div class="row">
-    <div class="title col-6 offset-3 mt-3">
+    <div class="title col-8 offset-2 mt-3">
         <h3><%= listing.title%></h3>
     </div>
     
@@ -20,10 +20,9 @@
             <p class="card-text"><b><i>Contact Details</i></b> +919292390012</p>
         </div>
     </div>
-    <br>
     <%if(currUser && currUser._id.equals(listing.owner._id)){%>
         <div class="btns">
-            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
+            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark offset-2 edit-btn">Edit</a>
 
             <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
             <button class="btn btn-dark offset-5 delete-btn">
@@ -57,12 +56,13 @@
         <%}%>
     </div>
     <div  class="col-8 offset-2 mt-3 mb-5">
+        <hr>
         <h3>Where you'll be</h3>
         <div id="map"></div>
     </div>
     <div class="col-8 offset-2 mt-3 mb-5">
-        <hr>
         <% if(currUser) {%>
+            <hr>
         <h4>Leave a Review</h4> 
         <form action="/listings/<%=listing._id%>/reviews" method="post" novalidate class="needs-validation">
             <div class="mb-3 mt-3">
