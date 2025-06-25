@@ -5,20 +5,19 @@
 
 <% layout("/layouts/boilerplate")-%>
 <div class="row">
-    <div class="col-8 offset-3 mt-3">
+    <div class="title col-6 offset-3 mt-3">
         <h3><%= listing.title%></h3>
     </div>
     
     <div class="card listing-card col-6 offset-3 show-card">
         <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing img">
         <div class="card-body">
-            <p class="card-text">
-                <i>Owned By <%=listing.owner.username%></i></p>
-                <p class="card-text"><%= listing.description%> <br></p>
-                <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN")%> </p>
-                <p class="card-text"><%= listing.location%></p>
-                <p class="card-text"><%= listing.country%></p>
-            
+            <p class="card-text"><b><i>OWNED BY <%=listing.owner.username.toUpperCase()%></i></b></p>
+            <p class="card-text"><b><i>Description:</i></b> <%= listing.description%> <br></p>
+            <p class="card-text"> <b><i>Pricing Details:</i></b> &#8377; <%= listing.price.toLocaleString("en-IN")%> /night </p>
+            <p class="card-text"><i class="fa-solid fa-location-dot"></i>&nbsp; &nbsp; <b><i>Location Details:</i></b> <%= listing.location%></p>
+            <p class="card-text"><b><i>Country:</i></b> <%= listing.country%></p>
+            <p class="card-text"><b><i>Contact Details</i></b> +919292390012</p>
         </div>
     </div>
     <br>
@@ -34,7 +33,34 @@
         
         </div>
     <%}%>
-    <div class="col-8 offset-3 mt-3 mb-3">
+    <div class="col-8 offset-2 mt-3 mb-3">
+        <hr>
+        <% if(listing.reviews.length>0){%>
+        <div class="row">
+            <h4><b>All Reviews</b></h4>
+            <% for(review of listing.reviews){ %>
+            <div class="card mt-2 ms-2 mb-3 "> 
+                <div class="card-body">
+                    <h5 class="card-text">@<%= review.author.username%> </h5>
+                    <p class="starability-result card-text" data-rating=<%= review.rating%>></p>
+                    <p class="card-text"><%= review.comment%> </p>
+                    
+                </div>
+                <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3" method="post">
+                    <% if(currUser && currUser._id.toString()===review.author._id.toString()) {%>
+                    <button class="btn btn-sm btn-dark mt-3">Delete</button>
+                     <%}%>
+                </form>
+            </div>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
+    <div  class="col-8 offset-2 mt-3 mb-5">
+        <h3>Where you'll be</h3>
+        <div id="map"></div>
+    </div>
+    <div class="col-8 offset-2 mt-3 mb-5">
         <hr>
         <% if(currUser) {%>
         <h4>Leave a Review</h4> 
@@ -65,33 +91,10 @@
             </div>
             
             <button class="btn btn-outline-dark">submit</button>
-            <hr>
+            
         </form>
         <%}%>
         
-        <% if(listing.reviews.length>0){%>
-        <div class="row">
-            <h4><b>All Reviews</b></h4>
-            <% for(review of listing.reviews){ %>
-            <div class="card col-5 mt-2 ms-3 mb-3 "> 
-                <div class="card-body">
-                    <h5 class="card-text">@<%= review.author.username%> </h5>
-                    <p class="card-text"><%= review.comment%> </p>
-                    <p class="starability-result card-text" data-rating=<%= review.rating%>></p>
-                </div>
-                <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3" method="post">
-                    <% if(currUser) {%>
-                    <button class="btn btn-sm btn-dark mt-3">Delete</button>
-                     <%}%>
-                </form>
-            </div>
-            <%}%>
-        </div>
-        <%}%>
-    </div>
-    <div  class="col-8 offset-3 mt-3 mb-3">
-        <h3>Where you'll be</h3>
-        <div id="map"></div>
     </div>
 </div>
 

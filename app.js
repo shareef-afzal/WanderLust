@@ -22,16 +22,6 @@ const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 
 const atlas_DB_URL=process.env.ATLAS_URL;
-// main()
-//     .then(()=>{
-//         console.log("connected to DB");
-//     })
-//     .catch((err)=>{
-//         console.log(err);
-//     });
-// async function main(){
-//     await mongoose.connect(atlas_DB_URL);
-// }
 async function main() {
   try {
     await mongoose.connect(process.env.ATLAS_URL, {

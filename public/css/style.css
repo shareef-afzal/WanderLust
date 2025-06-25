@@ -99,7 +99,7 @@ body{
 
 /* Show Page */
 .show-img{
-    height: 30vh;
+    height: 45vh;
 
 }
 .btns{
@@ -109,11 +109,15 @@ body{
     padding-left: 0px;
     padding-right: 0px;
 }
+.title{
+  margin-bottom: 1rem;
+}
 #map { 
     height: 400px;
-    width: 80vh;
+    /* width: 100%; */
 }
 .nav-btns{
+  text-align: center;
     padding: 5px;
     border-radius: 2rem;
 }
@@ -121,7 +125,16 @@ body{
     background-color: rgb(247, 247, 247);
 }
 
-
+@media (max-width: 767px) {
+  .navbar-collapse {
+   background-color: white;
+  z-index: 1000;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  left: 0;
+  }
+}
 
 
 .slider {
@@ -148,7 +161,7 @@ body{
 }
 .filters {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 5rem;
@@ -171,6 +184,24 @@ body{
 .swiper-slide{
     width: 7.9rem !important;
 }
+@media (max-width: 767px) {
+  .swiper-slide{
+    width: 4rem !important;
+}
+.filters{
+  gap: 2rem;
+}
+}
+@media (max-width: 570px) {
+.filters{
+  display: block;
+}
+.tax-toggle{
+  margin-top: 2rem;
+  margin-left: auto;
+}
+}
+
 .filter:hover {
   opacity: 1;
   cursor: pointer;
@@ -187,6 +218,7 @@ body{
   border: 1px solid black;
   border-radius: 2rem;
   height: 2.5rem;
+  width:185px;
   padding: 0.5rem 1.2rem;
   display: flex;
   align-items: center;

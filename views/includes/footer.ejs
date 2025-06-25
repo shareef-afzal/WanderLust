@@ -1,14 +1,71 @@
+ <style>
+   .footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+  background-color: rgb(247, 247, 247);
+  text-align: center;
+}
+
+.left, .right {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.fa-brands {
+  padding: 0 1rem 0 0;
+  color: #fe424d;
+}
+
+.name {
+  font-size: large;
+}
+
+.footer-line {
+  margin: 0;
+  border: none;
+  border-top: 2px solid #fe424d;
+}
+
+/* For wider screens, align left and right content to their sides */
+@media (min-width: 577px) {
+  .left, .right {
+    flex: unset;
+    margin-bottom: 0;
+  }
+
+  .footer {
+    justify-content: space-between;
+  }
+
+  .left {
+    justify-content: flex-start;
+  }
+
+  .right {
+    justify-content: flex-end;
+  }
+}
+
+ </style>
+ <hr class="footer-line">
+
 <footer>
-    <div class="f-info">
-        <div class="f-info-socials">
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-square-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+    <div class="footer">
+        
+        <div class="left">
+            <a href="/listings"><i class="fa-solid fa-location-dot fa-3x"></i></a>
+            &nbsp; &nbsp; &nbsp;
+            <span class="name"> <b>&copy; 2025 &nbsp; ViaHaus , Inc</b></span>
         </div>
-        <div class="f-info-brand"> &copy; WanderLust Private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">terms</a>
+
+        <div class="right ">
+            <a href="#"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+            <a href="#"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
         </div>
     </div>
 </footer>
